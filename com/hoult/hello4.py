@@ -1,40 +1,62 @@
-import types
+from collections import Iterable
+import os
+# 切片
+
+L = list(range(100))
+
+print(L[::2])
+
+s = " sdfas "
+
+print("前s",s)
+while s[:1] == ' ':
+    s = s[1:]
+while s[-1:] == ' ':
+    s = s[:-1]
+print("后s",s)
+
+d = {'a': 1, 'b': 2, 'c': 3}
+
+for i in d.items():
+    print(i)
 
 
-def fn():
-    pass
+# 迭代
+print(isinstance("acca", Iterable))
+print(isinstance([], Iterable))
 
+for i,value in enumerate(L):
+    print(i,"ss%s" %  value)
 
-print(type(12312))
-print(type(abs)==types.BuiltinFunctionType)
+# 列表生成式
 
-# print(types(fn))
+print([x*y for x in list(range(10)) for y in list(range(1,11))])
 
-print(dir("ABC"))
+print([d for d in os.listdir('.')])
 
+print(isinstance("", str))
 
-class Student(object):
-    count = 0
+# 斐波那契数列
 
-    def __init__(self, name):
-        self.name = name
-        Student.count += 1
-        __class__.count += 1
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        # print(a)
+        yield b
+        a, b = b, a + b
+        n += 1
+    return "good"
 
+# print(next(fib(4)))
 
-# 测试:
-if Student.count != 0:
-    print('测试失败!')
-else:
-    bart = Student('Bart')
-    if Student.count != 1:
-        print('测试失败!')
-    else:
-        lisa = Student('Bart')
-        if Student.count != 2:
-            print('测试失败!')
-        else:
-            print('Students:', Student.count)
-            print('测试通过!')
+g = fib(6)
+
+while True:
+    try:
+        x = next(g)
+        print('g',x)
+    except StopIteration as e:
+        print("迭代结束", e.value)
+        break
 
 

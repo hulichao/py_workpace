@@ -1,26 +1,32 @@
-# 面向对象
+from hello import my_abs
+
+print(my_abs(111))
+
+inits = []
+def append_end(L = inits):
+    L.append("end")
+    return L
 
 
-class Student(object):
+print(append_end())
+print(append_end())
+print(inits)
 
-    def __init__(self, name, score):
-        self.__name = name
-        self.__score = score
+nums = [1,2,3]
+s = set(nums)
+print(*s)
 
-    def print_score(self):
-        print('%s: %s' % (self.__name, self.__score))
+# 关键字参数
+def person(name, age, **kw):
+    print("name =", name, "age=", age, kw)
 
+person("bob", 10, city = "beijing")
 
-stu1 = Student("amy", 15)
-stu2 = Student("john", 18)
+def asdf(name, age = 10, *args, city, **kw):
+    print("name =",name,"age =",age)
+    print(args)
+    print(city)
+    print(kw)
+    return
 
-stu1.print_score()
-stu2.print_score()
-
-a = 10
-print(a)
-a = "ss"
-print(a)
-
-print(stu1)
-
+asdf("hoult", 12, "hahhah", city="beijing", country="china", weather="good")

@@ -1,38 +1,37 @@
-#  动态语音的鸭子特性，对于静态语言（例如Java）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型
-# 或者它的子类，否则，将无法调用run()方法。
-#  对于Python这样的动态语言来说，则不一定需要传入Animal类型。我们只需要保证传入的对象有一个run()方法就可以了：
+# 递归与尾递归
 
+#递归
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
 
-class Animal(object):
-    def run(self):
-        print("animal is running")
+print(fact(5))
 
+# 尾递归
 
-class Cat(Animal):
-    def run(self):
-        print("cat is runnint")
+def fact2(n):
+    return fact2(n, 1)
 
+def fact2(num, result):
+    if num == 1:
+        return result
+    return fact2(num - 1, result * num)
 
-class Dog(Animal):
-    def run (self):
-        print("dog is running")
+print(fact2(5, 1))
 
+# 汉诺塔
+def move(n, a, b, c):
+    if n == 1:
+        print(a, "-->", c)
+    else:
+        move(n - 1, a, c, b)
+        move(1, a, b, c)
+        move(n - 1, b, a, c)
 
-def run_twice(animal):
-    animal.run()
-    animal.run()
+def main():
+    move(3, 'A', 'B', 'C')
 
-
-class Time(object):
-    def run(self):
-        print("time is run")
-
-
-a = Cat()
-b = Dog()
-
-run_twice(a)
-run_twice(b)
-run_twice(Time())
-
+if __name__ == '__main__':
+    main()
 
